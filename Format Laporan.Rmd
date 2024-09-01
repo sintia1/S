@@ -1,0 +1,268 @@
+---
+title: "Peramalan Produksi Mesin Pendingin dengan Metode Linier Berganda"
+author: "Sintia Dwi Permatasari"
+date: "Mei 2022"
+output:
+  prettydoc::html_pretty:
+    theme: tactile
+    highlight: github
+    toc: true
+    number_sections: true
+---
+<style>
+    body{
+    text-align: justify }
+    </style/>
+```{r include=FALSE}
+library(knitr)
+opts_chunk$set(message = FALSE)
+opts_chunk$set(warning = FALSE)
+opts_chunk$set(comment = "")
+opts_chunk$set(collapse = TRUE)
+opts_chunk$set(error = TRUE)
+opts_chunk$set(prompt = TRUE)
+opts_chunk$set(fig.align = 'center')
+```
+# PENDAHULUAN
+## Latar Belakang  
+   Jumlah pengguna mesin pendingin terus meningkat seiring dengan meningkatnya permintaan, dan harganya yang semakin terjangkau. Jumlah pengguna juga diakibatkan meningkatnya jumlah populasi disertai dengan peningkatan taraf ekonomi. Berdasarkan laporan dari The japan Refrigeration and Air Conditioning Industry Association (JRAIA) tahun 2019, pada tahun 2018, 47.7% pasar AC di Asia berada di Asia Tenggara. Di tahun yang sama, permintaan AC baru di Indonesia tercatat 2,33 juta unit baru.Hal ini merupakan peluang yang besar terutama untuk industri mesin pendingin.Untuk memenuhi terhadap permintaan mesin pendingin diperlukan peramalan yang tepat dalam pengambilan keputusan dalam proses produksi. Peramalan produksi merupakan bentuk pembuatan keputusan yang dijadikan sebagai landasan dibanyak industri manufaktur dan industri pelayanan. 
+   
+   Dibandingkan dengan tahun 2012, dimana tercatat 2.03 juta permintaan unit baru, terjadi peningkatan sekitar 2.4% pertahun (sumber). Secara umum, Jumlah unit terpasang di Indonesia tumbuh sebanyak sekitar 7% pertahun. Indonesia menempati posisi pertama dengan jumlah permintaan pendingin ruangan terbanyak di Asia Tenggara, disusul Thailand dan Vietnam. Lebih lanjut, JRAIA juga melaporkan bahwa Indonesia menempati urutan ke 3 setelah Tiongkok dan India dalah hal permintaan pendingin.Tujuan dilakukan penelitian ini adalah untuk meramalkan jumlah produksi sehingga dapat menentukan jumlah produksi mesin pendingin dalam 12 periode dimasa yang akan datang. Analisis regresi merupakan analisis yang  bertujuan  untuk  menentukan  model  yang  paling  sesuai  untuk  pasangan  data  serta  dapat  digunakan  untuk membuat model dan menyelidiki hubungan antara dua variabel atau lebih.
+   
+# Tinjauan Pustaka 
+## Analisis Regresi Linier Berganda
+Metode regresi linier berganda merupakan teknik analisis yang mencoba menjelaskan hubungan antara dua peubah atau lebih khususnya  antara peubah-peubah yang mengandung sebab akibat disebut analisis regresi.Model regresi linear berganda melibatkan lebih dari satu variable bebas atau predictor. Sehingga  dalam  kaitannya  dengan  uraian  tersebut  diatas,  penelitian  ini  bertujuan  untuk  mengetahui  peramalan produksi dengan menggunakan metode regresi linear berganda. 
+
+Model regresi linear berganda dilukiskan dengan persamaan sebagai berikut:
+$$
+Y=\beta_{0} +\beta_{1}X_{2}+\beta_{2}X_{2}+...+\beta_{n}X_{n}+\epsilon
+$$
+Keterangan
+
+Y= Variabel terikat atau variabel response  
+X= Variabel bebas atau variabel predictor  
+$\alpha$= konstanta  
+$\beta$= slope atau koefisien estimate   
+
+
+Dalam analisis regresi liniear berganda terdapat beberapa uji asumsi klasik, yaitu uji heteroskedastisitas. Uji tersebut bertujuan untuk menguji apakah dalam sebuah model regresi terjadi ketidaksamaan varians residual dari suatu pengamatan ke pengamatan yang lain tetap. Kemudian Uji Normalitas, yang bertujuan untuk menguji apakah dalam suatu model regresi, variabel terikat dan variabel bebas atau keduanya mempunyai distribusi normal atau tidak 
+
+
+## Data 
+Pada kasus ini data yang digunakan merupakan data sekunder yang diambil dari jurnal penelitian. Penelitian  ini  dilakukan  pada perusahaan  yang  bergerak  di bidang Heat Exchanger yang  berlokasi  di  Desa  Wonokoyo,  Beji,  Pasuruan,  Jawa  Timur.  Penelitian  ini  dilaksanakan  pada bulan Februari 2014 sampai dengan bulan Maret 2014. Objek penelitian adalah produk unitheat exchanger. Instrumen yang dipergunakan dalam melakukan  pengumpulan  data  adalah  pedoman  observasi,wawancara  dan  dokumentasi  yang  berisi  garis  besar informasi atau data yang diperlukan. Pengumpulan data dilakukan melalui wawancara atau tanya jawab dengan pihak perusahaan mengenai data-data yang diperlukan untuk melakukan perencanaan jumlah produksi yang akan datang serta data sekunder dari data produksi dan penjualan. 
+
+## Uji Asumsi
+a. Uji Normalitas    
+Uji normalitas adalah untuk melihat apakah nilai residu terdistribusi normal atau tidak. Model regresi yang baik adalah memiliki residu yang terdistribusi normal. Tes normalitas karena itu tidak dilakukan untuk setiap variabel, tetapi untuk nilai residual. Uji normalitas digunakan untuk menguji apakah residual data berdistribusi normal menggunakan uji Kolmogorov-Smirnov. Residual dinyatakan berdistribusi normal jika nilai signifikansi Kolmogorov-Smirnov > 0,05.
+
+
+b. Uji Multikolinieritas   
+Uji multikolinieritas dirancang untuk menentukan apakah ada korelasi yang tinggi antara variabel independen dalam model regresi. Jika ada korelasi yang tinggi antara variabel independen hubungan antara variabel independen dan variabel dependen terganggu.Alat statistik yang biasanya digunakan untuk menguji gangguan multikolinieritas adalah variance inflation factor (VIF), korelasi Pearson antara variabel independen atau pertimbangan nilai eigen dan indeks kondisi. Model regresi yang baik yaitu, model yang bebas dari multikolinieritas. Model regresi bebas dari multikolineritas jika nilai tolerancenya kurang dari 0,1 dan nilai VIF lebih dari 10.  
+
+
+c. Uji Heteroskedastisitas    
+Uji heteroskedastisitas memeriksa apakah ada perbedaan yang tidak sama antara satu residu dan pengamatan lain. Salah satu model regresi yang memenuhi persyaratan adalah bahwa ada kesamaan dalam varians antara residu dari satu pengamatan dan lainnya yang disebut homoscedasticity. Model regresi yang baik ialah model yang tidak mengandung heteroskedastisitas. Model regresi bebas dari heteroskedastisitas jika nilai signifikansi > 0,05. Bukti heteroskedastisitas dapat dibuat dengan menggunakan metode scatterplot dengan memplot nilai ZPRED (Nilai Prediktif) dengan SRESID (Nilai Sisa). Model yang baik adalah ketika grafik tidak mengandung pola tertentu, seperti berkumpul di tengah, menyempit dan memperbesar atau sebaliknya memperbesar dan memperkecil.
+
+
+d. Uji Autokorelasi  
+Uji autokorelasi adalah untuk melihat apakah terjadi korelasi antara suatu periode t dengan periode sebelumnya (t -1). Secara sederhana, analisis regresi terdiri dari menguji pengaruh variabel independen terhadap variabel dependen sehingga tidak boleh ada korelasi antara pengamatan dan data observasi sebelumnya. Beberapa uji statistik yang sering dipergunakan adalah uji Durbin-Watson, uji dengan Run Test dan jika data observasi di atas 100 data sebaiknya menggunakan uji Lagrange Multiplier. Beberapa cara untuk mengatasi masalah autokorelasi adalah mengubah data atau mengubah model regresi menjadi persamaan perbedaan umum. Selain itu juga dapat dilakukan dengan memasukkan variabel lag dari variabel terikatnya menjadi salah satu variabel bebas, sehingga data observasi menjadi berkurang 1.  
+
+## Uji Simultan 
+Pengujian ini bertujuan untuk membuktikan apakah variabel-variabel independen secara silmutan ( bersama-sama ) mempunyai pengaruh terhadap variabel dependen.  
+
+
+## Uji Parsial      
+Uji parsial dilakukan untuk melihat apakah masing-masing variabel independen berpengaruh signifikan terhadap variabel dependen dengan asumsi variabel independen lainnya konstan.
+
+# SOURCE CODE
+
+## Library yang Dibutuhkan
+```{r}
+# install.packages("knitr")
+# install.packages("rmarkdown")
+# install.packages("prettydoc")
+# install.packages("equatiomatic")
+# install.packages("car")
+# install.packages("lmtest")
+```
+## Mengimport Dataset Excel
+```{r}
+library(readxl)
+Data<- read_excel("C:/Users/SINTIA DWI/Documents/KULIAH/SEMESTER 4/KOMSTAT/Data_Komstat.xlsx")
+
+```
+## Menampilkan Dataset Excel
+```{r}
+View(Data)
+```
+## Melihat Data
+```{r}
+Data
+```
+
+## Pemodelan Regresi Linier Berganda
+```{r}
+library(readxl)
+R1<-lm(Data$Total_Produksi~Data$`Jumlah_Kerusakan(X1)`+Data$Harga_Bahan+Data$Tenaga_Kerja)
+summary(R1)
+```
+## Uji Asumsi
+### Uji Normalitas 
+```{r}
+library(lmtest)
+library(car)
+shapiro.test(R1$residuals)
+```
+```{r}
+hist(residuals(R1))
+plot(R1, 2)
+
+```
+
+### Uji Non-Autokorelasi
+```{r}
+dwtest(R1)
+```
+
+### Uji Homoskedastisitas
+```{r}
+bptest(R1,studentize = FALSE)
+```
+```{r}
+plot(R1, 1)
+``` 
+
+### Uji Non-Multikolinearitas  
+```{r}
+vif(R1)
+```  
+
+## Uji Simultan  
+```{r}  
+library(readxl)
+R1<-lm(Data$Total_Produksi~Data$`Jumlah_Kerusakan(X1)`+Data$Harga_Bahan+Data$Tenaga_Kerja)
+summary(R1)  
+``` 
+Uji simultan dilihat berdasarkan p-value
+
+## Uji Parsial  
+```{r}  
+Model= summary(R1)
+Koef = Model$coefficients
+Koef
+```  
+
+# HASIL DAN PEMBAHASAN
+## Model Regresi Linier Berganda 
+Dari output di atas, diperoleh nilai F-statistic = 0,995 dengan p-value 0,449.Ini artinya, tidak terdapat satu variabel bebas yang memengaruhi variabel tak bebas. 
+
+Model regresi berganda yang diperoleh dapat dituliskan sebagai berikut :  
+
+`Produksi = 138,3 + 72,70(jumlah kerusakan) + 0,000000942(Harga Bahan Baku) - 9,379(Tenaga Kerja)`  
+
+
+## Pengujian Asumsi Klasik    
+Uji asumsi klasik adalah persyaratan statistik yang harus dipenuhi pada analisis regresi linear berganda yang berbasis ordinary least square (OLS). Tidak semua uji asumsi klasik harus dilakukan pada analisis regresi linear, misalnya uji multikolinearitas tidak dilakukan pada analisis regresi linear sederhana dan uji autokorelasi tidak perlu diterapkan pada data cross sectional.  
+**1. Uji Normalitas**   
+Hipotesis  
+  H0: Galat menyebar normal  
+  H1: Galat tidak menyebar normal
+```{r}
+library(lmtest)
+library(car)
+shapiro.test(R1$residuals)
+```  
+ Keputusan :  
+ Terima H0, karena p-value > tingkat signifikansi $\alpha$ yakni 0,09486 > 0,05  
+ 
+ Kesimpulan :  
+ Dengan taraf nyata 5% dapat disimpulkan bahwa galat menyebar normal
+ 
+**2. Uji Non-Autokorelasi**  
+Hipotesis  
+H0: Tidak terdapat autokorelasi pada model  
+H1: Terdapat autokorelasi pada model  
+```{r}
+dwtest(R1)
+```  
+Keputusan:  
+Terima H0, karena p-value > tingkat signifikansi $\alpha$ yakni 0,4439 > 0,05  
+Kesimpulan :  
+Dengan taraf nyata 5% dapat disimpulkan bahwa tidak terdapat autokorelasi pada model
+ 
+**3. Uji Homoskedastisitas**  
+Hipotesis  
+H0: Terdapat homoskedastisitas (Ragam galat sama)
+H1: Tidak terdapat homoskedastisitas (Ragam galat tidak sama)  
+```{r}
+bptest(R1,studentize = FALSE)
+```  
+Keputusan:    
+Terima H0, karena p-value > tingkat signifikansi $\alpha$ yakni 0,287 > 0,05   
+Kesimpulan:  
+Dengan taraf nyata 5% dapat disimpulkan bahwa terdapat homoskedastisitas  
+
+**4. Uji Non-Multikolinieritas**   
+Hipotesis   
+H0:Tidak terdapat multikolinieritas  
+H1:Terdapat multikolinieritas  
+```{r}
+vif(R1)
+```  
+Keputusan:  
+Terima H0, karena nilai VIF pada variabel jumlah kerusakan mesin, tenaga kerja, dan harga bahan baku lebih kecil dari 10  
+Kesimpulan:  
+Dengan taraf nyata 5% dapat disimpulkan bahwa tidak terdapat multikolinieritas pada data
+
+## Uji Simultan  
+Hipotesis  
+H0: Variabel jumlah kerusakan mesin, harga bahan baku, dan tenaga kerja tidak berpengaruh terhadap jumlah produksi  
+H1: Variabel jumlah kerusakan mesin, harga bahan baku, dan tenaga kerja berpengaruh terhadap jumlah produksi  
+Keputusan:   
+Terima H0, karena p-value (0,449) > $\alpha$ (0,05)  
+Kesimpulan:  
+Dengan taraf nyata 5% dapat disimpulkan bahwa Variabel jumlah kerusakan mesin, harga bahan baku, dan tenaga kerja tidak berpengaruh terhadap jumlah produksi
+
+## Uji Parsial  
+```{r}
+Model= summary(R1)
+Koef = Model$coefficients
+Koef
+```
+- $\beta_{1}$ : Terima H0, karena p-value (0,2179569) > $\alpha$ (0,05) 
+Dengan taraf nyata 5% dapat disimpulkan bahwa tidak terdapat hubungan secara parsial antara jumlah kerusakan mesin dengan jumlah produksi    
+- $\beta_{2}$ : Terima H0, karena karena p-value (0,5004335) > $\alpha$ (0,05) 
+Dengan taraf nyata 5% dapat disimpulkan bahwa tidak terdapat hubungan secara parsial antara harga bahan baku dengan jumlah produksi  
+- $\beta_{3}$ : Terima H0, karena karena p-value (0,56327) > $\alpha$ (0,05) 
+Dengan taraf nyata 5% dapat disimpulkan bahwa tidak terdapat hubungan secara parsial antara tenaga kerja dengan jumlah produksi    
+
+# Kesimpulan  
+
+
+```{r}
+library(readxl)
+R1<-lm(Data$Total_Produksi~Data$`Jumlah_Kerusakan(X1)`+Data$Harga_Bahan+Data$Tenaga_Kerja)
+R1
+```
+Model regresi berganda yang diperoleh dapat dituliskan sebagai berikut :  
+
+`Y = 138,3 + 72,70X1 + 0,000000942X2 - 9,379X3` 
+
+Y  : Jumlah produksi   
+X1 : Jumlah kerusakan mesin  
+X2 : Harga bahan baku  
+X3 : Tenaga kerja  
+
+Jumlah produksi mesin akan naik sebesar 138,2 jika jumlah kerusakan, harga bahan baku, dan tenaga kerja tidak ada.   
+- Setiap penambahan kerusakan mesin sebanyak 1 maka memengaruhi jumlah produksi sebesar 72,70    
+- Setiap penambahan harga bahan baku sebanyak 1 satuan maka memengaruhi jumlah produksi sebesar 0,000000942 
+
+# DAFTAR PUSTAKA
+\
+    Sulistyono, S., & Sulistiyowati, W. (2018). Peramalan produksi dengan metode regresi linier berganda. PROZIMA (Productivity, Optimization and Manufacturing System Engineering), 1(2), 82-89.\
+\
+Mona.,  M.G,  dkk.m  (2015).,  Penggunaan  Regresi  Linear  Berganda  untuk  Menganalisis  Pendapatan  Petani Kelapa Studi Kasus: Petani Kelapa di Desa Beo, Kecamatan Beo Kabupaten Talaud., JdC., Vo. 4., No.2\
+\
+Kutner, M.H., Nachtsheim, C.J., & Neter, J., 2004, Applied Linear Regression
+Models, 4 th ed, New York, McGraw-Hill Companies, Inc\
+
